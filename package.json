@@ -1,8 +1,12 @@
 {
   "name": "@umapplication.lab.i.t.m2d.in/traits-ts",
   "version": "1.0.0",
-  "main": "Releases/traits.js",
+  "main": "Releases/Traits.js",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/UMApplication/trait-ts.git"
+  },
   "dependencies": {
     "typescript": "^4.8.3"
   }
