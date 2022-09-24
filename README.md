@@ -1,7 +1,132 @@
 # Traits(Mixin) for Typescript
 ## Already merged into **UMA**pplication
+## How to install
 
-## Why Traits(Mixin)
+Install using yarn
+
+> yarn add git+https://git.services.m2d.in/technology/information/laboratory/umapplication/traits/typescript.git
+
+or using npm
+
+> npm install git+https://git.services.m2d.in/technology/information/laboratory/umapplication/traits/typescript.git
+
+and import in your project
+
+## How to use
+
+UMA-Traits is extremely easy to use.
+
+Here is an example case, and all following tutorials are basing on this case:
+
+```typescript
+
+class Human {
+
+  constructor(
+    public Name: string
+  ) { }
+
+  public Speak() {
+    console.log('Human can speak');
+  }
+}
+
+class Designer {
+  public Draw() {
+    console.log('Designer can draw');
+  }
+}
+
+class Developer {
+  public Coding() {
+    console.log('Developer can coding');
+  }
+}
+
+```
+
+Here we got 2 roles: Designer & Developer and a base class: Human, it is impossible to have multiple of them in one single person without some Magic.
+
+Now, with UMA-Traits, we change simply do that:
+
+```typescript
+class Clarkson extends (Traits.Basing(Human).With(Designer, Developer)) {
+}
+
+const clarksonInstance = new Clarkson();
+
+// Now Clarkson can get these things done
+clarksonInstance.Speak();
+clarksonInstance.Draw();
+clarksonInstance.Coding();
+
+```
+
+### Limitation to traits
+
+You should noticed that only Basing class can have a **Constructor with Arguments**.
+
+The actual execution order of constructors in above case is like:
+
+```typescript
+function Clarkson(...args: any[]) {
+
+  Human(...args);
+  Designer();
+  Developer();
+
+}
+```
+
+### Determine if a class extended a trait
+
+Keyword "instanceof" is still worked for base class but not traits.
+
+Here is the real situation you are facing:
+
+```typescript
+
+(clarksonInstance) instanceof Human; // true
+(clarksonInstance) instanceof Designer; // false
+(clarksonInstance) instanceof Developer; // false
+
+```
+
+Using helper methods can easily do this better and even better than "instanceof".
+
+```typescript
+Traits.Having(Clarkson, Human); // true
+Traits.Having(clarksonInstance, Human); // true
+
+Traits.Having(Clarkson, Designer); // true
+Traits.Having(clarksonInstance, Designer); // true
+
+Traits.Having(Clarkson, Developer); // true
+Traits.Having(clarksonInstance, Developer); // true
+
+```
+
+And also worked with class which using Clarkson as base class
+
+```typescript
+class LittleClarkson extends Clarkson {
+}
+
+Traits.Having(LittleClarkson, Human); // true
+Traits.Having(LittleClarkson, Designer); // true
+Traits.Having(LittleClarkson, Developer); // true
+
+```
+
+## Difference to UMApplication.Traits
+
+Traits in UMA is just a wrapper of this project, no different other than that.
+
+## About issues
+
+Since we are no longer use github as our major repo platform, processing of issues on github may be procrastinated, please pay a patience and we are sorry about that.
+
+## Additional: Why Traits(Mixin)
 
 Trait is a good replacement of "Extending Multiple Classes".
 
@@ -185,129 +310,3 @@ function applyMixins(derivedCtor: any, constructors: any[]) {
 We strongly recommend not Defining interface and class using same name although they are pointing to one same "Class".
 
 And also, this solution is not so Typescript.
-
-## How to install
-
-Install using yarn
-
-> yarn add git+https://git.services.m2d.in/technology/information/laboratory/umapplication/traits/typescript.git
-
-or using npm
-
-> npm install git+https://git.services.m2d.in/technology/information/laboratory/umapplication/traits/typescript.git
-
-and import in your project
-
-## How to use
-
-UMA-Traits is extremely easy to use.
-
-Here is an example case, and all following tutorials are basing on this case:
-
-```typescript
-
-class Human {
-
-  constructor(
-    public Name: string
-  ) { }
-
-  public Speak() {
-    console.log('Human can speak');
-  }
-}
-
-class Designer {
-  public Draw() {
-    console.log('Designer can draw');
-  }
-}
-
-class Developer {
-  public Coding() {
-    console.log('Developer can coding');
-  }
-}
-
-```
-
-Here we got 2 roles: Designer & Developer and a base class: Human, it is impossible to have multiple of them in one single person without some Magic.
-
-Now, with UMA-Traits, we change simply do that:
-
-```typescript
-class Clarkson extends (Traits.Basing(Human).With(Designer, Developer)) {
-}
-
-const clarksonInstance = new Clarkson();
-
-// Now Clarkson can get these things done
-clarksonInstance.Speak();
-clarksonInstance.Draw();
-clarksonInstance.Coding();
-
-```
-
-### Limitation to traits
-
-You should noticed that only Basing class can have a **Constructor with Arguments**.
-
-The actual execution order of constructors in above case is like:
-
-```typescript
-function Clarkson(...args: any[]) {
-
-  Human(...args);
-  Designer();
-  Developer();
-
-}
-```
-
-### Determine if a class extended a trait
-
-Keyword "instanceof" is still worked for base class but not traits.
-
-Here is the real situation you are facing:
-
-```typescript
-
-(clarksonInstance) instanceof Human; // true
-(clarksonInstance) instanceof Designer; // false
-(clarksonInstance) instanceof Developer; // false
-
-```
-
-Using helper methods can easily do this better and even better than "instanceof".
-
-```typescript
-Traits.Having(Clarkson, Human); // true
-Traits.Having(clarksonInstance, Human); // true
-
-Traits.Having(Clarkson, Designer); // true
-Traits.Having(clarksonInstance, Designer); // true
-
-Traits.Having(Clarkson, Developer); // true
-Traits.Having(clarksonInstance, Developer); // true
-
-```
-
-And also worked with class which using Clarkson as base class
-
-```typescript
-class LittleClarkson extends Clarkson {
-}
-
-Traits.Having(LittleClarkson, Human); // true
-Traits.Having(LittleClarkson, Designer); // true
-Traits.Having(LittleClarkson, Developer); // true
-
-```
-
-## Difference to UMApplication.Traits
-
-Traits in UMA is just a wrapper of this project, no different other than that.
-
-## About issues
-
-Since we are no longer use github as our major repo platform, processing of issues on github may be procrastinated, please pay a patience and we are sorry about that.
