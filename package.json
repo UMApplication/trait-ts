@@ -1,8 +1,9 @@
 {
+  "private": false,
   "name": "@umapplication.lab.i.t.m2d.in/traits-ts",
   "version": "1.0.0",
   "main": "Releases/Traits.js",
-  "license": "MIT",
+  "license": "BSD",
   "repository": {
     "type": "git",
     "url": "https://github.com/UMApplication/trait-ts.git"
