@@ -4,11 +4,11 @@
 
 Install using yarn
 
-> yarn add git+https://git.services.m2d.in/technology/information/laboratory/umapplication/traits/typescript.git
+> yarn add @umapplication.lab.i.t.m2d.in/traits-ts
 
 or using npm
 
-> npm install git+https://git.services.m2d.in/technology/information/laboratory/umapplication/traits/typescript.git
+> npm install @umapplication.lab.i.t.m2d.in/traits-ts
 
 and import in your project
 

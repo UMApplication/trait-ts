@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "@umapplication.lab.i.t.m2d.in/traits-ts",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "Release/Traits.js",
   "license": "BSD",
   "repository": {
