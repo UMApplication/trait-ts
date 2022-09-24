@@ -1,0 +1,9 @@
+{
+  "name": "@umapplication.lab.i.t.m2d.in/traits-ts",
+  "version": "1.0.0",
+  "main": "Releases/traits.js",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^4.8.3"
+  }
+}
